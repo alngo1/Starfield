@@ -1,7 +1,13 @@
-//your code here
+Particle [] stars = new NormalParticle[30];
 void setup()
 {
-	//your code here
+	size(300, 300);
+	for(var i = 0; i < stars.length; i++)
+	{
+		stars[i] = new NormalParticle();
+	}
+	stars[0] = new OddballParticle
+	stars[1] = new JumboParticle
 }
 void draw()
 {
@@ -9,18 +15,37 @@ void draw()
 }
 class NormalParticle
 {
-	//your code here
+	int myX, myY, mySize;
+	NormalParticle()
+	{
+		myX = 150;
+		myY = 150;
+		mySize = 10;
+	}
 }
 interface Particle
 {
-	//your code here
+	public void show();
+	public void move();
 }
 class OddballParticle //uses an interface
 {
-	//your code here
+	int myX, myY, mySize;
+	OddballParticle()
+	{
+		myX = 150;
+		myY = 150;
+		mySize = 50;
+	}
 }
 class JumboParticle //uses inheritance
 {
-	//your code here
+	int myX, myY, mySize;
+	JumboParticle()
+	{
+		myX = 150;
+		myY = 150;
+		mySize = 100;
+	}
 }
 
