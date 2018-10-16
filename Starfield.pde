@@ -1,10 +1,21 @@
-NormalParticle stars = new NormalParticle();
+Particle[] stars = new Particle[50];
 
 void setup()
 
 {
 
 	size(300, 300);
+	for(int i = 0; i < stars.length; i++)
+
+	{
+
+		stars[i] = new NormalParticle();
+
+	}
+
+	stars[0] = new OddballParticle();
+
+	stars[1] = new JumboParticle();
 
 }
 
@@ -12,13 +23,31 @@ void draw()
 
 {
 
-	stars.move();
+	background(#FFFFFF);
+	
+	for(int i = 0; i < stars.length; i++)
 
-	stars.show();	
+	{
+
+
+		stars[i].move();
+
+		stars[i].show();
+
+		fill((int)(Math.random()*256), (int)(Math.random()*256), (int)(Math.random()*256), 10);
+		rect(300, 300, 300, 300);
+
+	}
 
 }
 
-class NormalParticle
+void mousePressed()
+{
+	setup();
+}
+
+
+class NormalParticle implements Particle
 
 {
 
@@ -26,7 +55,7 @@ class NormalParticle
 
 	int myColor;
 
-	void NormalParticle()
+	NormalParticle()
 
 	{
 
@@ -38,9 +67,11 @@ class NormalParticle
 
 		mySpeed = Math.random()*10;
 
+		myColor = color ((int)(Math.random()*256), (int)(Math.random()*256), (int)(Math.random()*256));
+
 	}
 
-	void move()
+	public void move()
 	{
 
 		myX = myX + (Math.cos(myAngle)*mySpeed);
@@ -49,7 +80,7 @@ class NormalParticle
 	
 	}
 
-	void show()
+	public void show()
 	{
 
 		fill(myColor);
@@ -60,7 +91,7 @@ class NormalParticle
 
 }
 
-/*
+
 
 interface Particle
 
@@ -72,11 +103,13 @@ interface Particle
 
 }
 
-class OddballParticle //uses an interface
+class OddballParticle implements Particle
 
 {
 
-	int myX, myY, mySize;
+	double myX, myY, myAngle, mySpeed;
+
+	int myColor;
 
 	OddballParticle()
 
@@ -86,29 +119,53 @@ class OddballParticle //uses an interface
 
 		myY = 150;
 
-		mySize = 50;
+		myAngle = Math.random()*(2*Math.PI);
+
+		mySpeed = Math.random()*10;
+
+		myColor = color ((int)(Math.random()*256), (int)(Math.random()*256), (int)(Math.random()*256));
+
+	}
+
+	public void move()
+	{
+
+		myX = myX + (Math.cos(myAngle)*mySpeed);
+	
+	}
+
+	public void show()
+	{
+
+		fill(myColor);
+
+		rect((float)myX, (float)myY, 25, 25);
 
 	}
 
 }
 
-class JumboParticle //uses inheritance
+class JumboParticle extends NormalParticle
 
 {
 
-	int myX, myY, mySize;
-
-	JumboParticle()
-
+	
+	public void move()
 	{
 
-		myX = 150;
+		myX = myX + (Math.cos(myAngle)*mySpeed);
+		
+		myY = myY + (Math.sin(myAngle)*mySpeed);
+	
+	}
 
-		myY = 150;
+	public void show()
+	{
 
-		mySize = 100;
+		fill(myColor);
+
+		ellipse((float)myX, (float)myY, 50, 50);
 
 	}
 
 }
-*/
