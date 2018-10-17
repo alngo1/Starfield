@@ -4,6 +4,7 @@ void setup()
 
 {
 
+	noStroke();
 	size(300, 300);
 	for(int i = 0; i < stars.length; i++)
 
@@ -22,23 +23,19 @@ void setup()
 void draw()
 
 {
+	fill(102, 102, 255, 30);
+	rect(0, 0, 300, 300);
 
-	background(#FFFFFF);
-	
 	for(int i = 0; i < stars.length; i++)
 
 	{
-
 
 		stars[i].move();
 
 		stars[i].show();
 
-		fill((int)(Math.random()*256), (int)(Math.random()*256), (int)(Math.random()*256), 10);
-		rect(300, 300, 300, 300);
-
 	}
-
+	
 }
 
 void mousePressed()
@@ -65,9 +62,9 @@ class NormalParticle implements Particle
 
 		myAngle = Math.random()*(2*Math.PI);
 
-		mySpeed = Math.random()*10;
+		mySpeed = Math.random()*5;
 
-		myColor = color ((int)(Math.random()*256), (int)(Math.random()*256), (int)(Math.random()*256));
+		myColor = color ((int)(Math.random()*30)+200, (int)(Math.random()*30)+200, 255);
 
 	}
 
@@ -88,7 +85,6 @@ class NormalParticle implements Particle
 		ellipse((float)myX, (float)myY, 10, 10);
 
 	}
-
 }
 
 
@@ -131,6 +127,8 @@ class OddballParticle implements Particle
 	{
 
 		myX = myX + (Math.cos(myAngle)*mySpeed);
+
+		myY = myY - (Math.sin(myAngle)*mySpeed);
 	
 	}
 
@@ -142,6 +140,7 @@ class OddballParticle implements Particle
 		rect((float)myX, (float)myY, 25, 25);
 
 	}
+
 
 }
 
