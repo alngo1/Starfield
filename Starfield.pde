@@ -1,11 +1,15 @@
+
 Particle[] stars = new Particle[50];
 
 void setup()
 
 {
 
+
 	noStroke();
+	
 	size(300, 300);
+
 	for(int i = 0; i < stars.length; i++)
 
 	{
@@ -16,6 +20,13 @@ void setup()
 
 	stars[0] = new OddballParticle();
 
+	stars[1] = new JumboParticle();
+
+	for(int i = 0; i < stars.length; i++)
+	{
+		stars[i] = new NormalParticle();
+	}
+	stars[0] = new OddballParticle();
 	stars[1] = new JumboParticle();
 
 }
@@ -40,13 +51,16 @@ void draw()
 
 void mousePressed()
 {
+
 	setup();
+
 }
 
 
 class NormalParticle implements Particle
 
 {
+
 
 	double myX, myY, myAngle, mySpeed;
 
@@ -85,6 +99,7 @@ class NormalParticle implements Particle
 		ellipse((float)myX, (float)myY, 10, 10);
 
 	}
+
 }
 
 
@@ -93,15 +108,19 @@ interface Particle
 
 {
 
+
 	public void show();
 
 	public void move();
+
+
 
 }
 
 class OddballParticle implements Particle
 
 {
+
 
 	double myX, myY, myAngle, mySpeed;
 
@@ -140,7 +159,6 @@ class OddballParticle implements Particle
 		rect((float)myX, (float)myY, 25, 25);
 
 	}
-
 
 }
 
